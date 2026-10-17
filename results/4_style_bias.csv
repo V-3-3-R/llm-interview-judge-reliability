@@ -1,0 +1,11 @@
+judge,contrast,hi-lo,n_questions,mean_diff,CI_low,CI_high,rank_biserial,p_wilcoxon,p_holm
+gemini,verbose vs concise (correct),S2-S1,40,0.0083,0.0,0.025,1.0,1.0,1.0
+gemini,poor grammar vs concise (correct),S3-S1,40,-0.025,-0.0667,0.0,-1.0,0.5,1.0
+gemini,polished jargon vs concise (correct),S4-S1,40,0.0083,0.0,0.025,1.0,1.0,1.0
+gemini,confident vs plain (partial),S5-S7,40,0.2167,0.0667,0.3667,0.5698,0.0107,0.0537
+gemini,polished vs plain (incorrect),S6-S8,40,0.0667,-0.0583,0.1833,0.3626,0.2705,1.0
+groq_gptoss,verbose vs concise (correct),S2-S1,40,-0.1333,-0.2125,-0.0542,-0.6587,0.0027,0.0106
+groq_gptoss,poor grammar vs concise (correct),S3-S1,40,-0.4083,-0.5042,-0.3125,-1.0,0.0,0.0
+groq_gptoss,polished jargon vs concise (correct),S4-S1,40,0.1333,0.0458,0.2208,0.5635,0.0098,0.0196
+groq_gptoss,confident vs plain (partial),S5-S7,40,0.225,0.0916,0.3583,0.6089,0.003,0.0106
+groq_gptoss,polished vs plain (incorrect),S6-S8,40,0.0375,-0.05,0.125,0.1527,0.4746,0.4746

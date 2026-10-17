@@ -1,0 +1,2 @@
+raters,answers,mean_pairwise_QWK,min_pairwise_QWK,mean_leave_one_out_QWK
+4,100,0.949,0.939,0.966

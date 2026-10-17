@@ -1,0 +1,75 @@
+
+== Human ceiling (human-human agreement) ==
+ raters  answers  mean_pairwise_QWK  min_pairwise_QWK  mean_leave_one_out_QWK
+      4      100              0.949             0.939                   0.966
+
+== RQ1 Agreement of each judge with the human reference (100-answer subset) ==
+      judge   score_source   n  QWK_vs_human_median  QWK_CI_low  QWK_CI_high  ICC21_vs_human_mean  exact  within1  MAE_vs_human_mean  Spearman
+     gemini   A_temp0_run1 100                0.928       0.886        0.959                0.944   0.71     0.91              0.352     0.947
+     gemini   A_temp0_mean 100                0.928       0.886        0.959                0.945   0.71     0.91              0.349     0.947
+     gemini A_default_mean 100                0.933       0.896        0.960                0.953   0.70     0.91              0.332     0.954
+     gemini   B_temp0_run1 100                0.948       0.917        0.971                0.958   0.75     0.94              0.312     0.955
+groq_gptoss   A_temp0_run1 100                0.905       0.859        0.936                0.926   0.50     0.92              0.522     0.901
+groq_gptoss   A_temp0_mean 100                0.903       0.857        0.935                0.926   0.51     0.91              0.522     0.904
+groq_gptoss A_default_mean 100                0.905       0.865        0.934                0.926   0.46     0.94              0.564     0.894
+groq_gptoss   B_temp0_run1 100                0.965       0.943        0.980                0.973   0.78     0.98              0.252     0.954
+
+== RQ2 Consistency across repeated runs (Rubric A) ==
+      judge                          temperature  answers runs ICC21_across_runs mean_SD_per_answer              share_range>=1 share_range>=2 share_all_runs_identical
+     gemini                                    0      320    3          0.995597           0.032476                     0.05625            0.0                  0.94375
+     gemini                              default      320    3          0.994088           0.043301                       0.075            0.0                    0.925
+     gemini H2 test default vs 0 (McNemar exact)      320                                            default-only=14, t0-only=8       p=0.2863                         
+groq_gptoss                                    0      320    3          0.995003           0.030672                    0.053125            0.0                 0.946875
+groq_gptoss                              default      320    3          0.932769           0.349276                    0.578125       0.034375                 0.421875
+groq_gptoss H2 test default vs 0 (McNemar exact)      320                                           default-only=174, t0-only=6       p=0.0000                         
+
+== Mean score by variant (judges: all Rubric A runs; humans: 4-rater mean on subset) ==
+         judge variant  count  mean  std
+        gemini      S1     40  4.99 0.05
+        gemini      S2     40  5.00 0.00
+        gemini      S3     40  4.97 0.17
+        gemini      S4     40  5.00 0.00
+        gemini      S5     40  2.28 0.82
+        gemini      S6     40  0.33 0.60
+        gemini      S7     40  2.06 0.79
+        gemini      S8     40  0.26 0.52
+   groq_gptoss      S1     40  4.58 0.42
+   groq_gptoss      S2     40  4.45 0.45
+   groq_gptoss      S3     40  4.17 0.51
+   groq_gptoss      S4     40  4.71 0.35
+   groq_gptoss      S5     40  2.52 0.52
+   groq_gptoss      S6     40  0.29 0.27
+   groq_gptoss      S7     40  2.30 0.55
+   groq_gptoss      S8     40  0.25 0.35
+HUMAN (subset)      S1     13  4.98 0.07
+HUMAN (subset)      S2     12  4.88 0.13
+HUMAN (subset)      S3     13  5.00 0.00
+HUMAN (subset)      S4     12  5.00 0.00
+HUMAN (subset)      S5     13  3.17 0.67
+HUMAN (subset)      S6     12  0.10 0.13
+HUMAN (subset)      S7     12  2.96 0.71
+HUMAN (subset)      S8     13  0.23 0.24
+
+== RQ3 Style bias: paired score differences (Rubric A, Holm-corrected within judge) ==
+      judge                             contrast hi-lo  n_questions  mean_diff  CI_low  CI_high  rank_biserial  p_wilcoxon  p_holm
+     gemini         verbose vs concise (correct) S2-S1           40     0.0083  0.0000   0.0250         1.0000      1.0000  1.0000
+     gemini    poor grammar vs concise (correct) S3-S1           40    -0.0250 -0.0667   0.0000        -1.0000      0.5000  1.0000
+     gemini polished jargon vs concise (correct) S4-S1           40     0.0083  0.0000   0.0250         1.0000      1.0000  1.0000
+     gemini         confident vs plain (partial) S5-S7           40     0.2167  0.0667   0.3667         0.5698      0.0107  0.0537
+     gemini        polished vs plain (incorrect) S6-S8           40     0.0667 -0.0583   0.1833         0.3626      0.2705  1.0000
+groq_gptoss         verbose vs concise (correct) S2-S1           40    -0.1333 -0.2125  -0.0542        -0.6587      0.0027  0.0106
+groq_gptoss    poor grammar vs concise (correct) S3-S1           40    -0.4083 -0.5042  -0.3125        -1.0000      0.0000  0.0000
+groq_gptoss polished jargon vs concise (correct) S4-S1           40     0.1333  0.0458   0.2208         0.5635      0.0098  0.0196
+groq_gptoss         confident vs plain (partial) S5-S7           40     0.2250  0.0916   0.3583         0.6089      0.0030  0.0106
+groq_gptoss        polished vs plain (incorrect) S6-S8           40     0.0375 -0.0500   0.1250         0.1527      0.4746  0.4746
+
+== RQ4 Rubric sensitivity (temperature 0, run 1) ==
+      judge   n  mean_diff_B-A  mean_abs_diff  share_differing  QWK_A_vs_B  p_wilcoxon
+     gemini 320          0.097          0.147            0.147       0.983         0.0
+groq_gptoss 320          0.375          0.462            0.422       0.929         0.0
+
+== RQ5 Cross-judge agreement (all 320 answers) ==
+judge_1     judge_2   n   QWK  Spearman  mean_abs_diff
+ gemini groq_gptoss 320 0.935     0.919          0.478
+
+== Mixed models written to 7_mixed_models.txt ==

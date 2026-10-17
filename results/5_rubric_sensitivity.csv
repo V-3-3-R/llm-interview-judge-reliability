@@ -1,0 +1,3 @@
+judge,n,mean_diff_B-A,mean_abs_diff,share_differing,QWK_A_vs_B,p_wilcoxon
+gemini,320,0.097,0.147,0.147,0.983,0.0
+groq_gptoss,320,0.375,0.462,0.422,0.929,0.0

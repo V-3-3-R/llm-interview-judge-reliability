@@ -1,0 +1,7 @@
+judge,temperature,answers,runs,ICC21_across_runs,mean_SD_per_answer,share_range>=1,share_range>=2,share_all_runs_identical
+gemini,0,320,3,0.9955971457358564,0.03247595264191645,0.05625,0.0,0.94375
+gemini,default,320,3,0.9940882682703087,0.04330127018922193,0.075,0.0,0.925
+gemini,H2 test default vs 0 (McNemar exact),320,,,,"default-only=14, t0-only=8",p=0.2863,
+groq_gptoss,0,320,3,0.9950025480277896,0.030671733050698875,0.053125,0.0,0.946875
+groq_gptoss,default,320,3,0.9327687620945339,0.34927608723672937,0.578125,0.034375,0.421875
+groq_gptoss,H2 test default vs 0 (McNemar exact),320,,,,"default-only=174, t0-only=6",p=0.0000,

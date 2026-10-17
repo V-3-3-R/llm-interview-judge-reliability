@@ -1,0 +1,9 @@
+judge,score_source,n,QWK,CI_low,CI_high,exact,MAE_vs_human_mean
+gemini,A_temp0_run1,93,0.944,0.907,0.971,0.753,0.296
+gemini,A_temp0_mean,93,0.944,0.905,0.971,0.753,0.292
+gemini,A_default_mean,93,0.949,0.918,0.972,0.742,0.281
+gemini,B_temp0_run1,93,0.959,0.932,0.978,0.774,0.28
+groq_gptoss,A_temp0_run1,93,0.926,0.892,0.949,0.527,0.462
+groq_gptoss,A_temp0_mean,93,0.924,0.887,0.949,0.538,0.462
+groq_gptoss,A_default_mean,93,0.919,0.884,0.943,0.484,0.522
+groq_gptoss,B_temp0_run1,93,0.975,0.957,0.986,0.817,0.215

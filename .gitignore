@@ -1,0 +1,27 @@
+﻿# Secrets & keys
+.env
+*.env
+*.key
+SECRET*
+*secret*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Results that are very large (optional – keep if you want full reproducibility)
+# results_raw/scores_real.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Temporary
+*.tmp
+*~
