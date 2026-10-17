@@ -1,35 +1,79 @@
-# LLM Interview-Grader Reliability Study: project folder
+# Reliability of LLM Judges for Technical Interview Answers
 
-Question: how reliably do LLM judges score technical interview answers (agreement with humans, consistency across runs, style bias, rubric sensitivity)?
+**Agreement · Consistency · Style Bias · Rubric Sensitivity**
 
-## Folder map
+This repository contains the full dataset, code, analysis scripts, and results for the study:
 
-| Path | What it is |
-|---|---|
-| `run_judges.py` | Sends every answer to the LLM judges and saves scores (7 calls per answer per judge) |
-| `check_manipulations.py` | Tests that the dataset variants really differ as intended |
-| `apply_review.py` | Applies label-review edits to an answers file and logs changes (only for edits you have read) |
-| `freeze_dataset.py` | Locks the final dataset with SHA-256 fingerprints (run once) |
-| `analyze_results.py` | Produces all result tables and a chart from the judge scores |
-| `data/archive_candidate/` | Earlier candidate answers and key (before the label review). Do not use for the real run |
-| `data/label_review_S5-S8_REVIEWED_v2.csv` | Reviewed label sheet for the 160 partial/incorrect answers (verdicts, notes, flags, the 2 edits) |
-| `data/answers_v0.2_reviewed.csv` | The 320 reviewed answers for the judges (random IDs, no labels) |
-| `data/answer_key_v0.2_reviewed.csv` | Labels per answer (variant, quality, style, domain, `human_rated`, `review_flag`). Ready to freeze |
+> *Reliability of LLM Judges for Technical Interview Answers: Agreement, Consistency, and Style Bias*
+
+**Author:** Veer Javadia  
+**Email:** veerjavadia@gmail.com  
+**GitHub:** [V-3-3-R](https://github.com/V-3-3-R)
+
+---
+
+## Research Question
+
+How reliably do LLM judges score technical interview answers?
+
+We measure:
+- Agreement with human raters
+- Consistency across repeated runs
+- Style bias (when technical content is held constant)
+- Sensitivity to rubric wording
+
+---
+
+## Key Facts
+
+| Item | Value |
+|------|-------|
+| Questions | 40 (7 computing domains) |
+| Answers | 320 (8 controlled variants each) |
+| Human raters | 4 independent raters on 100 answers |
+| Judges | Gemini 3.5 Flash-Lite + gpt-oss-20b |
+| Total judge calls | 4,480 |
+| Freezing date | 10 October 2026 (IST) |
+
+---
+
+## Folder Map
+
+| Path | Description |
+|------|-------------|
+| `run_judges.py` | Sends every answer to the LLM judges (7 calls per answer per judge) |
+| `check_manipulations.py` | Verifies that the answer variants differ as intended |
+| `apply_review.py` | Applies label-review edits and logs changes |
+| `freeze_dataset.py` | Locks the final dataset with SHA-256 fingerprints |
+| `analyze_results.py` | Produces all main result tables |
+| `extra_analysis.py` | Sensitivity and exploratory analyses |
+| `progress.py` | Tracks how many judge scores are complete |
+| `data/answers_v0.2_reviewed.csv` | 320 reviewed answers (no labels) |
+| `data/answer_key_v0.2_reviewed.csv` | Labels (variant, quality, style, domain, flags) |
+| `data/label_review_S5-S8_REVIEWED_v2.csv` | Full review of the 160 partial/incorrect answers |
+| `frozen/` | Final frozen answers + key (do not edit) |
+| `human_rating/human_ratings_merged_4raters.csv` | Merged scores from 4 raters |
+| `human_rating/raw_returned/` | Original returned workbooks (keep unchanged) |
+| `results/` | Main analysis outputs |
+| `results_extra/` | Sensitivity / exploratory outputs |
+| `results_raw/` | Raw judge scores (4,480 rows) |
+| `docs/` | Protocol, paper drafts, briefing |
 | `COMMANDS.md` | Every command in order with expected outputs |
-| `human_rating/human_ratings_merged_4raters.csv` | Scores from the 4 raters on the 100-answer subset |
-| `human_rating/raw_returned/` | The four returned rater workbooks (keep unchanged as raw data) |
-| `docs/` | Protocol, paper draft (Introduction + skeleton + references), collaborator briefing PDF |
 
-## How to run it
-See **COMMANDS.md**: every command in order (setup, checks, freeze, real run, analysis) with the output you should expect.
+---
 
-## Rules to keep the study valid
-- Do not edit answers after any judge has run.
-- Do not change the judge prompt or rubrics between judges or runs.
-- Human reference rules were fixed in advance: all 4 raters used; mean for correlation and error, median rounded half-up for kappa.
-- Keep `human_rating/raw_returned/` untouched.
-- The answers were drafted by an LLM and then reviewed; describe them as "LLM-assisted, human-verified" in the paper.
-- The judge prompt in `run_judges.py` says "computer science instructor" (changed from "database instructor", which did not fit seven domains). Keep it fixed once the real run starts.
+## How to Reproduce
 
-## Known limitations (also for the paper)
-Short definitional questions; single-LLM authorship of answers; S6 answers longer than S1; humans score nearly all correct answers 5, so style bias on correct answers can show only as scores lower than 5; two small judges; most references are preprints.
+See **`COMMANDS.md`** for the complete sequence (setup → checks → freeze → real run → analysis).
+
+Quick start:
+
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# Linux/macOS
+source .venv/bin/activate
+
+pip install -r requirements.txt
+python analyze_results.py
