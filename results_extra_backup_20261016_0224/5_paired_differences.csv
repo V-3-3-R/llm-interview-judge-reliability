@@ -1,5 +1,0 @@
-comparison,QWK_difference,CI_low,CI_high
-"gemini: Rubric B minus Rubric A (temp 0, run 1)",0.021,0.004,0.042
-"groq_gptoss: Rubric B minus Rubric A (temp 0, run 1)",0.06,0.034,0.092
-gemini minus groq_gptoss (A_temp0_run1),0.023,-0.013,0.058
-gemini minus groq_gptoss (B_temp0_run1),-0.017,-0.042,0.007
